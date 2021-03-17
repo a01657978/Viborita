@@ -34,9 +34,10 @@ def move():
         print('Snake:', len(snake))
         food.x = random.randrange(-15, 15) * 10
         food.y = random.randrange(-15, 15) * 10
+        
     else:
         snake.pop(0)
-
+    
     clear()
     
     for body in snake:
@@ -45,6 +46,15 @@ def move():
     square(food.x, food.y, 9, color[1])
     update()
     ontimer(move, 100)
+    
+def comi():
+    if food.x < 189 and food.x > -199:
+            food.x += random.randrange(-1,1) * 10
+    if food.y < 189 and food.y > -199:
+            food.y += random.randrange(-1,1) * 10
+    square(food.x, food.y, 9, color[1])
+    update()
+    ontimer(comi, 10000)
 
 setup(420, 420, 370, 0)
 hideturtle()
@@ -55,4 +65,5 @@ onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 move()
+comi()
 done()
